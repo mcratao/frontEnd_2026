@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Curiosidades e fatos históricos da Ciência da Computação">
+<meta name="author" content="Portal Computação">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquivo Confuso da Computação</title>
+
+<style>
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5faff; /* azul clarinho */
+    color: #03396c; /* azul escuro */
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+header.topo {
+    background: linear-gradient(90deg, #005b96, #03396c);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header.topo h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+header.topo p {
+    font-size: 1.1rem;
+    font-style: italic;
+}
+
+/* Menu */
+nav.menu {
+    background-color: #ffd700; /* amarelo */
+}
+
+nav.menu ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav.menu li {
+    margin: 0.5rem 1rem;
+}
+
+nav.menu a {
+    text-decoration: none;
+    color: #03396c;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav.menu a:hover {
+    color: #001f3f;
+}
+
+/* Conteúdo principal */
+main.conteudo {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Seções e artigos */
+section {
+    margin-bottom: 3rem;
+}
+
+h2 {
+    border-bottom: 3px solid #ffd700;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: #005b96;
+}
+
+h3 {
+    color: #03396c;
+    margin-top: 1rem;
+}
+
+p {
+    margin: 0.5rem 0 1rem 0;
+}
+
+blockquote {
+    border-left: 4px solid #ffd700;
+    padding-left: 1rem;
+    color: #005b96;
+    font-style: italic;
+    background-color: #e6f0fa;
+    margin: 1rem 0;
+}
+
+aside {
+    background-color: #ffd700;
+    color: #03396c;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+/* Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+table th, table td {
+    padding: 0.75rem;
+    border: 1px solid #03396c;
+    text-align: left;
+}
+
+table th {
+    background-color: #005b96;
+    color: #fff;
+}
+
+table caption {
+    caption-side: top;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Listas */
+ul, ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Formulário */
+form fieldset {
+    border: 2px solid #005b96;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #e6f0fa;
+}
+
+form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border: 1px solid #03396c;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #005b96;
+    color: #fff;
+    border: none;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #03396c;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background-color: #03396c;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+/* Detalhes */
+details summary {
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+details p {
+    margin: 0.5rem 0 1rem 0;
+}
+
+/* Responsividade */
+@media(max-width: 600px) {
+    nav.menu ul {
+        flex-direction: column;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<header class="topo">
+<h1>Arquivo (Quase) Perdido da Ciência da Computação</h1>
+<p>Uma coletânea caótica de fatos históricos, curiosos e inesperados.</p>
+</header>
+
+<nav class="menu">
+<ul>
+<li><a href="#pioneiros">Pioneiros</a></li>
+<li><a href="#bugs">Bugs</a></li>
+<li><a href="#internet">Internet</a></li>
+<li><a href="#linguagens">Linguagens</a></li>
+<li><a href="#linha-do-tempo">Linha do Tempo</a></li>
+<li><a href="#formulario">Envie Algo</a></li>
+</ul>
+</nav>
+
+<main class="conteudo">
+
+<section id="pioneiros">
+<h2>Pioneiros Esquecidos</h2>
+<article>
+<h3>Ada Lovelace</h3>
+<p>Considerada a primeira programadora da história.</p>
+<details>
+<summary>Ver mais</summary>
+<p>Ela escreveu um algoritmo para a Máquina Analítica no século XIX.</p>
+</details>
+</article>
+
+<article>
+<h3>Alan Turing</h3>
+<p>Criador do conceito de Máquina de Turing.</p>
+<blockquote>"Podemos ver apenas um pouco do futuro, mas o suficiente para perceber que há muito a fazer."</blockquote>
+</article>
+
+<aside>
+<h4>Curiosidade lateral</h4>
+<p>Durante décadas, o trabalho de Turing foi mantido em segredo.</p>
+</aside>
+</section>
+
+<section id="bugs">
+<h2>Histórias de Bugs</h2>
+<article>
+<h3>O Primeiro Bug Real</h3>
+<p>Uma mariposa encontrada em um computador em 1947.</p>
+<figure>
+<figcaption>Registro do bug colado no relatório técnico.</figcaption>
+</figure>
+</article>
+
+<article>
+<h3>O Vírus Creeper</h3>
+<p>Primeiro vírus da história (1971).</p>
+<p>Mensagem exibida:</p>
+<pre>I'M THE CREEPER : CATCH ME IF YOU CAN</pre>
+</article>
+</section>
+
+<section id="internet">
+<h2>Curiosidades da Internet</h2>
+<article>
+<h3>Primeiro Website</h3>
+<p>Criado em 1991 por Tim Berners-Lee.</p>
+</article>
+
+<article>
+<h3>ARPANET</h3>
+<p>A precursora da internet moderna.</p>
+<ul>
+<li>Primeira mensagem enviada: "LO"</li>
+<li>O sistema caiu antes de completar "LOGIN"</li>
+</ul>
+</article>
+
+<article>
+<h3>Emojis e ASCII</h3>
+<p>Antes dos emojis gráficos, usávamos:</p>
+<code>:-)</code>
+<code>;-)</code>
+<code>:-D</code>
+</article>
+</section>
+
+<section id="linguagens">
+<h2>Linguagens de Programação</h2>
+<article><h3>COBOL</h3><p>Ainda usado em sistemas bancários.</p></article>
+<article><h3>C</h3><p>Base para muitos sistemas operacionais.</p></article>
+<article><h3>HTML</h3><p>Não é linguagem de programação, mas estrutura a web.</p></article>
+
+<table>
+<caption>Linguagens e Ano de Criação</caption>
+<thead>
+<tr><th>Linguagem</th><th>Ano</th></tr>
+</thead>
+<tbody>
+<tr><td>COBOL</td><td>1959</td></tr>
+<tr><td>C</td><td>1972</td></tr>
+<tr><td>Python</td><td>1991</td></tr>
+</tbody>
+<tfoot>
+<tr><td colspan="2">Dados históricos aproximados</td></tr>
+</tfoot>
+</table>
+</section>
+
+<section id="linha-do-tempo">
+<h2>Linha do Tempo Aleatória</h2>
+<ol>
+<li>1837 - Máquina Analítica</li>
+<li>1946 - ENIAC</li>
+<li>1969 - ARPANET</li>
+<li>1991 - Primeiro site</li>
+<li>2007 - Popularização dos smartphones</li>
+</ol>
+</section>
+
+<section id="formulario">
+<h2>Envie sua Curiosidade</h2>
+<form>
+<fieldset>
+<legend>Informações</legend>
+<label>Nome:</label>
+<input type="text">
+<label>Email:</label>
+<input type="email">
+<label>Categoria:</label>
+<select>
+<option>Pioneiros</option>
+<option>Bugs</option>
+<option>Internet</option>
+<option>Linguagens</option>
+</select>
+<label>Data do fato:</label>
+<input type="date">
+<label>Sua curiosidade:</label>
+<textarea></textarea>
+<input type="submit" value="Enviar">
+</fieldset>
+</form>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 Arquivo Confuso da Computação</p>
+</footer>
+
+</body>
+</html>
