@@ -35,7 +35,25 @@ function addProduto() {
     };
 
     carrinho.push(item);
-
     audio.currentTime = 0;
     audio.play();
+    atualizatela();
+};
+
+funtion atualizatela(){
+    let total =0;
+    const list = cocumento.getElementById("lista");
+
+    carrinho.forEach((item,index)=>{
+        total += item.subtot;
+
+        const li = documento.creatElement("li");
+        li.classname = "list-group-item"
+
+        li.innerHTML = `<div >${item.nome} ---- 
+        ${item.quantidade} x ${item.preco} = 
+        ${item.subtot}</div>`;
+
+        list.appendchild(li);
+    });
 }
