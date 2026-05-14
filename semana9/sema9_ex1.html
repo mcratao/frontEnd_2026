@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+    <html lang="pt-br">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de CPF</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #resultado {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .sucesso { color: #28a745; }
+        .erro { color: #dc3545; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Validador de CPF</h2>
+    <input type="text" id="cpfInput" placeholder="000.000.000-00" maxlength="14">
+    <button onclick="validar()">Validar</button>
+    <p id="resultado"></p>
+</div>
+
+<script>
+    function validar() {
+        const input = document.getElementById('cpfInput');
+        const display = document.getElementById('resultado');
+        
+        // Remove tudo que não for número
+        let cpf = input.value.replace(/[^\d]+/g, '');
+
+        if (validarLogicaCPF(cpf)) {
+            display.innerHTML = "CPF Válido!";
+            display.className = "sucesso";
+        } else {
+            display.innerHTML = "CPF Inválido!";
+            display.className = "erro";
+        }
+    }
+
+    function validarLogicaCPF(cpf) {
+        // Valida se tem 11 dígitos ou se é uma sequência repetida conhecida
+        if (cpf.length !== 11 || !!cpf.match(/(\d)\1{10}/)) return false;
+
+        let soma = 0;
+        let resto;
+
+        // Cálculo do 1º dígito verificador
+        for (let i = 1; i <= 9; i++) {
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+        }
+        resto = (soma * 10) % 11;
+        if ((resto === 10) || (resto === 11)) resto = 0;
+        if (resto !== parseInt(cpf.substring(9, 10))) return false;
+
+        // Cálculo do 2º dígito verificador
+        soma = 0;
+        for (let i = 1; i <= 10; i++) {
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+        }
+        resto = (soma * 10) % 11;
+        if ((resto === 10) || (resto === 11)) resto = 0;
+        if (resto !== parseInt(cpf.substring(10, 11))) return false;
+
+        return true;
+    }
+
+    // Máscara simples para o input (opcional, mas melhora a experiência)
+    document.getElementById('cpfInput').addEventListener('input', function (e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
+        e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + (x[3] ? '.' + x[3] : '') + (x[4] ? '-' + x[4] : '');
+    });
+</script>
+
+</body>
+</html>

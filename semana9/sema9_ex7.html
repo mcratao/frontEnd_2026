@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validador de Segurança Infinity</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .painel {
+      margin-top: 25px;
+      background: #eef2ff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .painel p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    .valido {
+      color: green;
+      font-weight: bold;
+    }
+
+    .invalido {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>🛡️ Validador de Segurança Infinity</h1>
+
+    <label for="cartao">Número do Cartão:</label>
+    <input 
+      type="text" 
+      id="cartao" 
+      placeholder="Digite até 16 dígitos"
+      maxlength="25"
+    >
+
+    <button onclick="analisarCartao()">
+      Analisar Cartão
+    </button>
+
+    <div class="painel" id="resultado">
+      <p>Status: --</p>
+      <p>Bandeira: --</p>
+      <p>Categoria de Setor: --</p>
+      <p>Banco Emissor: --</p>
+    </div>
+  </div>
+
+  <script>
+
+    function analisarCartao() {
+
+      let numero = document.getElementById("cartao").value;
+
+      // Remove espaços e pontos
+      numero = numero.replace(/\s/g, "").replace(/\./g, "");
+
+      // Verifica quantidade de dígitos
+      if (!/^\d{13,16}$/.test(numero)) {
+        mostrarResultado(
+          "Inválido",
+          "Desconhecida",
+          "Não identificado",
+          "Não identificado"
+        );
+        return;
+      }
+
+      // Validação de Luhn
+      let valido = validarLuhn(numero);
+
+      // Identificar bandeira
+      let bandeira = identificarBandeira(numero);
+
+      // Identificar setor
+      let setor = identificarSetor(numero);
+
+      // Identificar banco
+      let banco = identificarBanco(numero);
+
+      mostrarResultado(
+        valido ? "Válido" : "Inválido",
+        bandeira,
+        setor,
+        banco
+      );
+    }
+
+    // Algoritmo de Luhn
+    function validarLuhn(numero) {
+
+      let soma = 0;
+      let inverter = false;
+
+      for (let i = numero.length - 1; i >= 0; i--) {
+
+        let digito = parseInt(numero.charAt(i));
+
+        if (inverter) {
+          digito *= 2;
+
+          if (digito > 9) {
+            digito -= 9;
+          }
+        }
+
+        soma += digito;
+        inverter = !inverter;
+      }
+
+      return soma % 10 === 0;
+    }
+
+    // Identificar bandeira
+    function identificarBandeira(numero) {
+
+      if (/^4/.test(numero)) {
+        return "Visa";
+      }
+
+      if (/^5[1-5]/.test(numero)) {
+        return "MasterCard";
+      }
+
+      if (/^3[47]/.test(numero)) {
+        return "American Express";
+      }
+
+      if (/^6(?:011|5)/.test(numero)) {
+        return "Discover";
+      }
+
+      if (/^35/.test(numero)) {
+        return "JCB";
+      }
+
+      return "Desconhecida";
+    }
+
+    // Identificar setor pelo primeiro dígito
+    function identificarSetor(numero) {
+
+      let primeiro = numero.charAt(0);
+
+      switch (primeiro) {
+        case "1":
+          return "Companhias Aéreas";
+        case "2":
+          return "Transportes e Financeiro";
+        case "3":
+          return "Viagens e Entretenimento";
+        case "4":
+        case "5":
+          return "Instituições Financeiras";
+        case "6":
+          return "Comércio e Bancos";
+        case "7":
+          return "Petróleo e Energia";
+        case "8":
+          return "Telecomunicações";
+        case "9":
+          return "Serviços Governamentais";
+        default:
+          return "Não identificado";
+      }
+    }
+
+    // Simulação de banco emissor
+    function identificarBanco(numero) {
+
+      if (/^4/.test(numero)) {
+        return "Infinity Bank";
+      }
+
+      if (/^5[1-5]/.test(numero)) {
+        return "Master Finance";
+      }
+
+      if (/^3[47]/.test(numero)) {
+        return "Express Credit";
+      }
+
+      if (/^6/.test(numero)) {
+        return "Global Commerce Bank";
+      }
+
+      return "Banco não identificado";
+    }
+
+    // Mostrar resultados
+    function mostrarResultado(status, bandeira, setor, banco) {
+
+      let classe = status === "Válido"
+        ? "valido"
+        : "invalido";
+
+      document.getElementById("resultado").innerHTML = `
+        <p>Status: <span class="${classe}">${status}</span></p>
+        <p><strong>Bandeira:</strong> ${bandeira}</p>
+        <p><strong>Categoria de Setor:</strong> ${setor}</p>
+        <p><strong>Banco Emissor:</strong> ${banco}</p>
+      `;
+    }
+
+  </script>
+
+</body>
+</html>

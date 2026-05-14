@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Bank - Simulador de Vendas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .simulator-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            width: 350px;
+            border: 1px solid #333;
+        }
+        h2 { text-align: center; color: #00d4ff; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.9rem; margin-bottom: 5px; color: #bbb; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #252525;
+            color: white;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #00d4ff;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        button:hover { background: #0099cc; }
+        #resumo {
+            margin-top: 20px;
+            padding: 15px;
+            background: #000;
+            border-radius: 8px;
+            display: none;
+            border-left: 4px solid #00d4ff;
+        }
+        .item-resumo { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+        .destaque { color: #00d4ff; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="simulator-card">
+    <h2>Infinity Bank</h2>
+    
+    <div class="form-group">
+        <label>Valor da Venda (R$)</label>
+        <input type="number" id="valorVenda" placeholder="Ex: 1000.00" step="0.01">
+    </div>
+
+    <div class="form-group">
+        <label>Bandeira do Cartão</label>
+        <select id="bandeira">
+            <option value="visa">Visa (2%)</option>
+            <option value="master">Mastercard (1.85%)</option>
+            <option value="elo">Elo (3%)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Número de Parcelas</label>
+        <input type="number" id="parcelas" placeholder="Mínimo 1" min="1" value="1">
+    </div>
+
+    <button onclick="simularVenda()">Simular Venda</button>
+
+    <div id="resumo">
+        <div class="item-resumo">Taxa Bandeira: <span id="outTaxaBandeira"></span></div>
+        <div class="item-resumo">Juros Totais: <span id="outJuros"></span></div>
+        <div class="item-resumo">Taxas Mensais Fixas: <span id="outTaxaMensal"></span></div>
+        <hr style="border: 0.5px solid #333;">
+        <div class="item-resumo">Valor Total: <span class="destaque" id="outTotal"></span></div>
+        <div class="item-resumo">Valor da Parcela: <span class="destaque" id="outParcela"></span></div>
+    </div>
+</div>
+
+<script>
+    function simularVenda() {
+       
+        const venda = Number(document.getElementById('valorVenda').value);
+        const bandeira = document.getElementById('bandeira').value;
+        const qtdParcelas = parseInt(document.getElementById('parcelas').value);
+        const displayResumo = document.getElementById('resumo');
+
+        if (venda <= 0 || isNaN(venda) || qtdParcelas <= 0) {
+            alert("Por favor, insira valores válidos.");
+            return;
+        }
+
+        
+        let percBandeira = 0;
+        switch (bandeira) {
+            case 'visa':
+                percBandeira = 0.02;
+                break;
+            case 'master':
+                percBandeira = 0.0185;
+                break;
+            case 'elo':
+                percBandeira = 0.03;
+                break;
+        }
+
+        const valorTaxaBandeira = venda * percBandeira;
+
+
+        const jurosTotais = venda * (0.015 * qtdParcelas);
+
+        
+        const taxaMensalTotal = 12.50 * qtdParcelas;
+
+    
+        const valorTotal = venda + valorTaxaBandeira + jurosTotais + taxaMensalTotal;
+        const valorParcela = valorTotal / qtdParcelas;
+
+    
+        document.getElementById('outTaxaBandeira').innerText = `R$ ${valorTaxaBandeira.toFixed(2)}`;
+        document.getElementById('outJuros').innerText = `R$ ${jurosTotais.toFixed(2)}`;
+        document.getElementById('outTaxaMensal').innerText = `R$ ${taxaMensalTotal.toFixed(2)}`;
+        document.getElementById('outTotal').innerText = `R$ ${valorTotal.toFixed(2)}`;
+        document.getElementById('outParcela').innerText = `${qtdParcelas}x de R$ ${valorParcela.toFixed(2)}`;
+
+        displayResumo.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

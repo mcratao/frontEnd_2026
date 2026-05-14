@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Infinity Bank - Lista de Convidados VIP</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      width: 450px;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      border: none;
+      padding: 10px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+    }
+
+    .btn-add {
+      background: #2563eb;
+    }
+
+    .btn-add:hover {
+      background: #1d4ed8;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .nome {
+      flex: 1;
+      font-size: 16px;
+    }
+
+    .concluido {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 5px;
+    }
+
+    .btn-concluir {
+      background: #16a34a;
+    }
+
+    .btn-editar {
+      background: #f59e0b;
+    }
+
+    .btn-excluir {
+      background: #dc2626;
+    }
+
+    .btn-concluir:hover {
+      background: #15803d;
+    }
+
+    .btn-editar:hover {
+      background: #d97706;
+    }
+
+    .btn-excluir:hover {
+      background: #b91c1c;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h1>👥 Lista de Convidados VIP</h1>
+
+    <div class="input-area">
+      <input 
+        type="text" 
+        id="nomeConvidado" 
+        placeholder="Digite o nome do convidado"
+      >
+
+      <button class="btn-add" onclick="adicionarConvidado()">
+        Adicionar
+      </button>
+    </div>
+
+    <ul id="listaConvidados"></ul>
+
+  </div>
+
+  <script>
+
+    // Array de convidados
+    let convidados = [];
+
+    // Adicionar convidado
+    function adicionarConvidado() {
+
+      let input = document.getElementById("nomeConvidado");
+      let nome = input.value.trim();
+
+      if (nome === "") {
+        alert("Digite um nome válido!");
+        return;
+      }
+
+      convidados.push({
+        nome: nome,
+        concluido: false
+      });
+
+      input.value = "";
+
+      atualizarLista();
+    }
+
+    // Atualizar lista na tela
+    function atualizarLista() {
+
+      let lista = document.getElementById("listaConvidados");
+
+      lista.innerHTML = "";
+
+      convidados.forEach((convidado, index) => {
+
+        let li = document.createElement("li");
+
+        li.innerHTML = `
+          <span class="nome ${convidado.concluido ? 'concluido' : ''}">
+            ${convidado.nome}
+          </span>
+
+          <div class="acoes">
+            <button 
+              class="btn-concluir"
+              onclick="concluirConvidado(${index})">
+              Concluir
+            </button>
+
+            <button 
+              class="btn-editar"
+              onclick="editarConvidado(${index})">
+              Editar
+            </button>
+
+            <button 
+              class="btn-excluir"
+              onclick="excluirConvidado(${index})">
+              Excluir
+            </button>
+          </div>
+        `;
+
+        lista.appendChild(li);
+
+      });
+    }
+
+    // Concluir convidado
+    function concluirConvidado(index) {
+
+      convidados[index].concluido =
+        !convidados[index].concluido;
+
+      atualizarLista();
+    }
+
+    // Editar convidado
+    function editarConvidado(index) {
+
+      let novoNome = prompt(
+        "Editar nome do convidado:",
+        convidados[index].nome
+      );
+
+      if (novoNome !== null && novoNome.trim() !== "") {
+
+        convidados[index].nome = novoNome.trim();
+
+        atualizarLista();
+      }
+    }
+
+    // Excluir convidado
+    function excluirConvidado(index) {
+
+      convidados.splice(index, 1);
+
+      atualizarLista();
+    }
+
+  </script>
+
+</body>
+</html>
