@@ -1,57 +1,231 @@
-<!DOCTYPE html> 
-<html lang="pt-BR"> 
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
-<title>Portfólio GitHub</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Portfólio GitHub</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      min-height: 100vh;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      color: #cbd5e1;
+    }
+
+    .secao {
+      margin-bottom: 35px;
+    }
+
+    .secao h2 {
+      margin-bottom: 15px;
+      color: #93c5fd;
+      border-left: 5px solid #60a5fa;
+      padding-left: 10px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      transition: 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #dbeafe;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+  </style>
 </head>
+
 <body>
-<header>
-<h1>Thiago Lunardon</h1>
-<p>Meus Projetos no GitHub </p>
-</header>
 
-  <p><a href="colecao_pokemon/index.html" target="_blank"> Primeiro Trabalho</a></p>
+  <div class="container">
 
-  <p><a href="meterial_estudos/index.html" target="_blank"> segundo Trabalho</a> </p>
+    <header>
+      <h1>🚀 Thiago Lunardon</h1>
+      <p>Meus Projetos Desenvolvidos no GitHub</p>
+    </header>
 
-  <p><a href="siteabelezado/index.html" target="_blank"> terceiro trabalhoquinto trabalho</a> </p>
+    <!-- Trabalhos -->
+    <section class="secao">
 
-  <p><a href="pet_virtual/index.html" target="_blank"> quinto trabalho</a> </p>
+      <h2>📚 Trabalhos</h2>
 
-  <p><a href="pagina_merdaco/index.html" target="_blank"> revisão prova</a> </p>
+      <div class="cards">
 
-  <p><a href="prova/index.html" target="_blank"> prova</a> </p>
+        <div class="card">
+          <a href="colecao_pokemon/index.html" target="_blank">
+            Primeiro Trabalho
+          </a>
+          <p>Coleção Pokémon</p>
+        </div>
 
-  <a>semana 9 exercicios</a> 
-  <p><a href="semana9/sema9_ex1.html" target="_blank"> ex1 </a> </p>
+        <div class="card">
+          <a href="meterial_estudos/index.html" target="_blank">
+            Segundo Trabalho
+          </a>
+          <p>Material de Estudos</p>
+        </div>
 
-  <p><a href="semana9/sema9_ex2.html" target="_blank"> ex2</a> </p>
+        <div class="card">
+          <a href="siteabelezado/index.html" target="_blank">
+            Terceiro Trabalho
+          </a>
+          <p>Site A Belezado</p>
+        </div>
 
-  <p><a href="semana9/sema9_ex3.html" target="_blank">ex3 </a> </p>
+        <div class="card">
+          <a href="pet_virtual/index.html" target="_blank">
+            Quinto Trabalho
+          </a>
+          <p>Projeto Pet Virtual</p>
+        </div>
 
-  <p><a href="semana9/sema9_ex4.html" target="_blank"> ex4</a> </p>
+        <div class="card">
+          <a href="pagina_merdaco/index.html" target="_blank">
+            Revisão Prova
+          </a>
+          <p>Página de revisão</p>
+        </div>
 
-  <p><a href="semana9/sema9_ex5.html" target="_blank">ex5 </a> </p>
+        <div class="card">
+          <a href="prova/index.html" target="_blank">
+            Prova
+          </a>
+          <p>Projeto da prova</p>
+        </div>
 
-  <p><a href="semana9/sema9_ex6.html" target="_blank"> ex6</a> </p>
+      </div>
 
-  <p><a href="semana9/sema9_ex7.html" target="_blank">ex7 </a> </p>
+    </section>
 
-  
+    <!-- Semana 9 -->
+    <section class="secao">
 
+      <h2>💻 Semana 9 - Exercícios</h2>
 
+      <div class="cards">
 
+        <div class="card">
+          <a href="semana9/sema9_ex1.html" target="_blank">
+            Exercício 1
+          </a>
+          <p>Atividade da Semana 9</p>
+        </div>
 
+        <div class="card">
+          <a href="semana9/sema9_ex2.html" target="_blank">
+            Exercício 2
+          </a>
+          <p>Atividade da Semana 9</p>
+        </div>
 
+        <div class="card">
+          <a href="semana9/sema9_ex3.html" target="_blank">
+            Exercício 3
+          </a>
+          <p>Atividade da Semana 9</p>
+        </div>
 
-  
+        <div class="card">
+          <a href="semana9/sema9_ex4.html" target="_blank">
+            Exercício 4
+          </a>
+          <p>Atividade da Semana 9</p>
+        </div>
+
+        <div class="card">
+          <a href="semana9/sema9_ex5.html" target="_blank">
+            Exercício 5
+          </a>
+          <p>Atividade da Semana 9</p>
+        </div>
+
+        <div class="card">
+          <a href="semana9/sema9_ex6.html" target="_blank">
+            Exercício 6
+          </a>
+          <p>Atividade da Semana 9</p>
+        </div>
+
+        <div class="card">
+          <a href="semana9/sema9_ex7.html" target="_blank">
+            Exercício 7
+          </a>
+          <p>Atividade da Semana 9</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <footer>
+      © 2026 - Portfólio de Thiago Lunardon
+    </footer>
+
+  </div>
+
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
